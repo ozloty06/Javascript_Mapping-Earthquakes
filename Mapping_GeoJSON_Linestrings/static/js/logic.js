@@ -126,8 +126,10 @@ let baseMaps = {
 let map = L.map('mapid', {
     center: [30, 30],
     zoom: 2,
-    layers: [streets]
+    layers: [Light]
 });
+
+
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
@@ -144,6 +146,9 @@ L.control.layers(baseMaps).addTo(map);
 
 // Accessing the airport GeoJSON URL
 let airportData = "https://raw.githubusercontent.com/ozloty06/Javascript_Mapping-Earthquakes/Mapping_GeoJSON_Points/majorAirports.json";
+
+// Accessing the Toronto airline routes GeoJSON URL.
+let torontoData = "https://raw.githubusercontent.com/<GitHub_name>/Mapping_Earthquakes/main/torontoRoutes.json";
 
 // Grabbing our GeoJSON data.
 d3.json(airportData).then(function(data) {
