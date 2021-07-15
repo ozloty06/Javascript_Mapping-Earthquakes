@@ -110,7 +110,7 @@ let dark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?
 let light = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox/dark-v10',
+    id: 'mapbox/light-v10',
     tileSize: 512,
     zoomOffset: -1,
     accessToken: API_KEY
@@ -124,9 +124,9 @@ let baseMaps = {
 
 // Create the map object with center, zoom level and default layer.
 let map = L.map('mapid', {
-    center: [30, 30],
+    center: [44.0, -80.0],
     zoom: 2,
-    layers: [Light]
+    layers: [light]
 });
 
 
@@ -144,18 +144,49 @@ L.control.layers(baseMaps).addTo(map);
 // mapbox/satellite-streets-v11
 // navigation-night-v1
 
-// Accessing the airport GeoJSON URL
-let airportData = "https://raw.githubusercontent.com/ozloty06/Javascript_Mapping-Earthquakes/Mapping_GeoJSON_Points/majorAirports.json";
+// // Accessing the airport GeoJSON URL
+// let airportData = "https://raw.githubusercontent.com/ozloty06/Javascript_Mapping-Earthquakes/Mapping_GeoJSON_Points/majorAirports.json";
 
 // Accessing the Toronto airline routes GeoJSON URL.
-let torontoData = "https://raw.githubusercontent.com/<GitHub_name>/Mapping_Earthquakes/main/torontoRoutes.json";
+let torontoData = "https://raw.githubusercontent.com/ozloty06/Javascript_Mapping-Earthquakes/main/torontoRoutes.json";
+
+// // Grabbing our GeoJSON data.
+// d3.json(torontoData).then(function(data) {
+//     console.log(data);
+//   // Creating a GeoJSON layer with the retrieved data.
+//   // L.geoJson(data).addTo(map);
+//   // });
+
+// // Creating a GeoJSON layer with retrieved data
+// L.geoJson(data, {
+//   color: "#ffffa1",
+//   weight: 2,
+//   onEachFeature: function(feature, layer) {
+//     layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr> <h3> Destination" + feature.properties.dst + "</hr>");
+//   }
+// })
+// .addTo(map);
+// });
+
+// 13.5.5 easier to read styling code for above
+// Create a style for the lines
+let myStyle = {
+  color: "#ffffa1",
+  weight: 2
+}
 
 // Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
-    console.log(data);
-  // Creating a GeoJSON layer with the retrieved data.
-  L.geoJson(data).addTo(map);
+d3.json(torontoData).then(function(data) {
+// Creating a GeoJSON layer with retrieved data
+L.geoJson(data, {
+  style: myStyle,
+  onEachFeature: function(feature, layer) {
+        layer.bindPopup("<h3> Airline: " + feature.properties.airline + "</h3> <hr> <h3> Destination" + feature.properties.dst + "</hr>");
+      }
+})
+.addTo(map);
 });
+
 
 // // We create the tile layer that will be the background of our map.
 // let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
