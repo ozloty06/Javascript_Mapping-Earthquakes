@@ -1,5 +1,5 @@
-// // Add console.log to check if our code is working
-// console.log("working");
+// Add console.log to check if our code is working
+console.log("working");
 
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -41,14 +41,14 @@ let baseMaps = {
 let map = L.map('mapid', {
     center: [39.5, -98.5],
     zoom: 3,
-    layers: [Streets]
+    layers: [streets]
 });
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
 // Accessing the toronto neighborhoods GeoJSON URL
-// let earthquakeData = "";
+// let torontoHoods = "https://raw.githubusercontent.com/ozloty06/Javascript_Mapping-Earthquakes/main/torontoNeighborhoods.json";
 
 // Grabbing our GeoJSON data.
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
