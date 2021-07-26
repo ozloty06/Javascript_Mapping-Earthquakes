@@ -2,7 +2,7 @@
 
 ### Resources
 - Javascript ES6 with Data-Driven Documents (D3) library
-- Leaflet 1.7.1 
+- Leaflet 1.7.1 and Mapbox v2.3.1
 - GeoJSON data
 
 ### Summary
