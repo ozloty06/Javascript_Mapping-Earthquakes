@@ -1,4 +1,5 @@
 # Mapping_Earthquakes
+> an analysis of maps
 
 ### Resources
 - Javascript ES6 with Data-Driven Documents (D3) library
